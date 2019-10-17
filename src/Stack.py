@@ -15,7 +15,7 @@ class Stack:
             self.__length -= 1
             return self.__a.pop()
 
-    def top(self):
+    def peek(self):
         return self.__a[-1]
 
     def length(self):
