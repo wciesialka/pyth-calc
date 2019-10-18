@@ -1,12 +1,13 @@
-import Stack
-import Queue
+import src.Stack as Stack
+import src.Queue as Queue
+import src.Factory as Factory
 
 class Calculator:
 
     def __init__(self):
         self.__postfix = Queue.Queue()
         self.__calculator_stack = Stack.Stack()
-        self.__factory = None
+        self.__factory = Factory.Factory(self.__calculator_stack)
 
     def calculate(self):
         while not self.__postfix.is_empty():
@@ -21,17 +22,18 @@ class Calculator:
             token = tokens.dequeue()
 
             if token == "+":
-                self.__factory.create_addition()
+                node = self.__factory.create_addition()
             elif token == "-":
-                self.__factory.create_subtraction()
+                node = self.__factory.create_subtraction()
             elif token == "*":
-                self.__factory.create_multiplication()
+                node = self.__factory.create_multiplication()
             elif token == "/":
-                self.__factory.create_division()
+                node = self.__factory.create_division()
             elif token == "%":
-                self.__factory.create_modulo()
+                node = self.__factory.create_modulo()
             elif token == "(":
                 self.__infix_to_postfix(tokens)
+                continue
             elif token == ")":
                 while not expression.is_empty():
                     self.__postfix.enqueue(expression.pop())
@@ -40,6 +42,7 @@ class Calculator:
                 i = float(token)
                 node = self.__factory.create_value(i)
                 self.__postfix.enqueue(node)
+                continue
             
             while (not expression.is_empty() and (expression.peek().precedence() >= node.precedence())):
                 self.__postfix.enqueue(expression.pop())
