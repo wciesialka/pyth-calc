@@ -5,7 +5,7 @@ class Queue:
         self.__length = 0
 
     def enqueue(self,val):
-        self.__a.insert(0,val)
+        self.__a.append(val)
         self.__length += 1
 
     def dequeue(self):
@@ -13,7 +13,7 @@ class Queue:
             raise RuntimeError("Cannot dequeue from empty queue!")
         else:
             self.__length -= 1
-            return self.__a.pop()
+            return self.__a.pop(0)
 
     def peek(self):
         return self.__a[-1]
