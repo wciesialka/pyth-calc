@@ -26,9 +26,13 @@ def main(args):
     else:
         equation = " ".join(args[1:])
         c = Calculator.Calculator()
-        c.infix_to_postfix(equation)
-        result = c.calculate()
-        print(result)
+        try:
+            c.infix_to_postfix(equation)
+            result = c.calculate()
+        except Exception as ex:
+            print("Invalid Input:\n\t",ex,"\nMake sure your equation is balanced and space delimited.")
+        else:
+            print(result)
     
 if __name__=="__main__":
     main(sys.argv)
