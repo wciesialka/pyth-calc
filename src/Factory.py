@@ -4,6 +4,7 @@ import src.Nodes.DivideNode as DivideNode
 import src.Nodes.ModuloNode as ModuloNode
 import src.Nodes.MultiplyNode as MultiplyNode
 import src.Nodes.SubtractNode as SubtractNode
+import src.Nodes.ExponentNode as ExponentNode
 import src.Stack as Stack
 
 class Factory:
@@ -28,3 +29,6 @@ class Factory:
 
     def create_modulo(self):
         return ModuloNode.ModuloNode(self.__s)
+
+    def create_exponent(self):
+        return ExponentNode.ExponentNode(self.__s)

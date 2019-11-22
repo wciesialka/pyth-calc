@@ -10,16 +10,16 @@ class Calculator:
         self.__factory = Factory.Factory(self.__calculator_stack)
 
     def calculate(self):
-        while not self.__postfix.is_empty():
-            self.__postfix.dequeue().execute()
-        return self.__calculator_stack.peek()
+        while not self.__postfix.is_empty():    # while the postfix queue is not empty,
+            self.__postfix.dequeue().execute()  # dequeue and execute it.
+        return self.__calculator_stack.peek()   # the top of the stack will now be the answer.
 
     def __infix_to_postfix(self,tokens):
         expression = Stack.Stack()
         node = None
         
-        while not tokens.is_empty():
-            token = tokens.dequeue()
+        while not tokens.is_empty(): # while there are tokens to handle...
+            token = tokens.dequeue() # get the token on top and handle it
 
             if token == "+":
                 node = self.__factory.create_addition()
@@ -31,30 +31,32 @@ class Calculator:
                 node = self.__factory.create_division()
             elif token == "%":
                 node = self.__factory.create_modulo()
+            elif token == "^":
+                node = self.__factory.create_exponent()
             elif token == "(":
-                self.__infix_to_postfix(tokens)
-                continue
+                self.__infix_to_postfix(tokens) # we can treat everything in paranthesis
+                continue                        # as it's own expression.
             elif token == ")":
-                while not expression.is_empty():
-                    self.__postfix.enqueue(expression.pop())
+                while not expression.is_empty():              # we pop from our sub-expression
+                    self.__postfix.enqueue(expression.pop())  # and add it to our postfix queue
                 return
-            else:
+            else: # values
                 i = float(token)
                 node = self.__factory.create_value(i)
                 self.__postfix.enqueue(node)
                 continue
             
             while (not expression.is_empty() and (expression.peek().precedence() >= node.precedence())):
-                self.__postfix.enqueue(expression.pop())
+                self.__postfix.enqueue(expression.pop()) # order of operations
             expression.push(node)
 
         while not expression.is_empty():
             self.__postfix.enqueue(expression.pop())
 
 
-    def infix_to_postfix(self,infix):
-        initial_tokens = infix.split(" ")
-        tokens = Queue.Queue()
+    def infix_to_postfix(self,infix):      # this function just turns a string into a
+        initial_tokens = infix.split(" ")  # a queue of tokens that our real infix to
+        tokens = Queue.Queue()             # postfix function can handle.
 
         for token in initial_tokens:
             tokens.enqueue(token)
