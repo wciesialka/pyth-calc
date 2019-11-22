@@ -1,0 +1,21 @@
+{
+    "name": "pyth-calc",
+    "description": "Object-Oriented Calculator in Python",
+    "pyv": "3.7",
+    "version": "1.1.0",
+    "main": "main.py",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/wciesialka/pyth-calc"
+    },
+    "keywords": [],
+    "author": {
+        "name": "William Ciesialka",
+        "email": "wciesialka@gmail.com"
+    },
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/wciesialka/pyth-calc/issues"
+    },
+    "homepage": "https://github.com/wciesialka/pyth-calc"
+}
