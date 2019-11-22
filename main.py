@@ -19,8 +19,9 @@ def main(args):
                 try:
                     c.infix_to_postfix(eq)
                     result = c.calculate()
-                except:
-                    print("Invalid Input. Please try again.")
+                except Exception as ex:
+                    print("Invalid Input:\n\t",ex,"\nMake sure your equation is balanced.")
+                    c = Calculator.Calculator()
                 else:
                     print("\t= ",result)
     else:
@@ -30,7 +31,7 @@ def main(args):
             c.infix_to_postfix(equation)
             result = c.calculate()
         except Exception as ex:
-            print("Invalid Input:\n\t",ex,"\nMake sure your equation is balanced and space delimited.")
+            print("Invalid Input:\n\t",ex,"\nMake sure your equation is balanced.")
         else:
             print(result)
     

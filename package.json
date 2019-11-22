@@ -2,7 +2,7 @@
     "name": "pyth-calc",
     "description": "Object-Oriented Calculator in Python",
     "pyv": "3.7",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "main": "main.py",
     "repository": {
         "type": "git",

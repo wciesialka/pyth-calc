@@ -27,6 +27,7 @@ class Calculator:
         return self.__calculator_stack.peek()   # the top of the stack will now be the answer.
 
     def __infix_to_postfix(self,tokens):
+
         expression = Stack.Stack()
         node = None
         
@@ -69,5 +70,6 @@ class Calculator:
     def infix_to_postfix(self,infix):      # this function just turns a string into a
         tokens = convert_eq(infix)         # a queue of tokens that our real infix to
                                            # postfix function can handle.
-
+        self.__calculator_stack.empty()
+        self.__postfix.empty()
         self.__infix_to_postfix(tokens)
