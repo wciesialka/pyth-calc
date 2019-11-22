@@ -1,7 +1,19 @@
 import src.Stack as Stack
 import src.Queue as Queue
 import src.Factory as Factory
+import re
 
+OPERATOR_RE = re.compile(r"(\+|-|\*|\/|\^|%|\(|\)){1}")
+WHITESPACE_RE = re.compile(r"(\s+)")
+
+def convert_eq(eq):
+    eq = WHITESPACE_RE.sub("",eq)
+    tokenlist = OPERATOR_RE.split(eq)
+    tokenlist = [x for x in tokenlist if x != ""]
+    tokens = Queue.Queue()
+    for token in tokenlist:
+        tokens.enqueue(token)
+    return tokens
 class Calculator:
 
     def __init__(self):
@@ -55,10 +67,7 @@ class Calculator:
 
 
     def infix_to_postfix(self,infix):      # this function just turns a string into a
-        initial_tokens = infix.split(" ")  # a queue of tokens that our real infix to
-        tokens = Queue.Queue()             # postfix function can handle.
-
-        for token in initial_tokens:
-            tokens.enqueue(token)
+        tokens = convert_eq(infix)         # a queue of tokens that our real infix to
+                                           # postfix function can handle.
 
         self.__infix_to_postfix(tokens)
