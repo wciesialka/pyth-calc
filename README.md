@@ -15,7 +15,7 @@ Either run `python3 main.py` or `python3 main.py "[expression]"`. Notice the quo
 
 ## Authors
 
-* William Ciesialka 
+* Willow Ciesialka 
 
 ## License
 
